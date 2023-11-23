@@ -5,8 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<h1>My cool to-do app</h1>
-
+<h1>My cool to-do app(le)</h1>
+<img src="/static/images/apple.jpg" alt="apple",  style="width: 100px"/>
+<br>
 {% if user.is_authenticated %}
     Welcome, {{ user.username }}!
 {% else %}
@@ -15,7 +16,7 @@
 {% if user.is_authenticated %}
     <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
-        <input type="submit" value="Sign Out">
+        <input type="submit" value="Sign Out" style="">
     </form>
 {% endif %}
 
