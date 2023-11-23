@@ -28,11 +28,13 @@
            {% if task.completed %}
               (Done)
            {% endif %}
+           <br>
+            <img src="{{ task.image.url }}" alt="Task image" style="width: 100px">
        </li>
     {% endfor %}
 </ul>
 
-<form method="post" action="{% url 'create_task' %}">
+<form method="post" action="{% url 'create_task' %}" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Create Task</button>

@@ -18,9 +18,12 @@ def index(request):
 
 @login_required
 def create_task(request):
-    form = TaskForm(request.POST)
-    if form.is_valid():
-        task = form.save(commit=False)
-        task.user = request.user
-        task.save()
-        return redirect('index')  # Redirect to wherever you want after saving
+    if request.method == 'POST':
+        print(request.FILES)
+        form = TaskForm(request.POST, request.FILES)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.user = request.user
+            task.save()
+            print(task.image.url)
+            return redirect('index')
