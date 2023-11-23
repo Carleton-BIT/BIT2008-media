@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>My cool to-do app</h1>
+
+{% if user.is_authenticated %}
+    Welcome, {{ user.username }}!
+{% else %}
+    Welcome, Guest!
+{% endif %}
+{% if user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Sign Out">
+    </form>
+{% endif %}
+
+<h2>List of tasks:</h2>
+<ul>
+    {% for task in tasks %}
+       <li>
+           {{ task.description }}
+           {% if task.completed %}
+              (Done)
+           {% endif %}
+       </li>
+    {% endfor %}
+</ul>
+
+<form method="post" action="{% url 'create_task' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Task</button>
+</form>
+
+</body>
+</html>
