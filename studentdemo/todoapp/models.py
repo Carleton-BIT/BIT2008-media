@@ -9,6 +9,7 @@ class Task(models.Model):
     description = models.CharField(max_length=255)
     completed = models.BooleanField(default=False)
     image = models.ImageField(upload_to='task_images/', default='default.jpg')
+    video = models.FileField(upload_to='task_videos/', default='EE E EEEE.mp4')
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
